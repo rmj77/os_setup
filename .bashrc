@@ -31,84 +31,82 @@ PROMPT_COMMAND='history -a && set_prompt'
 alias grep='grep --color=auto'
 alias ll='ls -lahG'
 
-# Functions
 function set_prompt () {
 
-	    # Get return code of last command to put at front of prompt
-		local LAST_COMMAND=$?
+    ### Return code of previous command ###
+    local LAST_COMMAND=$?
 
-		### Define colors ###
-		local BOLD_BLUE='\[\e[01;34m\]'
-		local BOLD_GREEN='\[\e[01;32m\]'
-		local BOLD_PURPLE='\[\e[01;35m\]'
-		local BOLD_RED='\[\e[01;31m\]'
-		local BOLD_TEAL='\[\e[01;36m\]'
-		local BOLD_WHITE='\[\e[01;37m\]'
-		local BOLD_YELLOW='\[\e[01;33m\]'
-		local BLUE='\[\e[00;34m\]'
-		local GREEN='\[\e[00;32m\]'
-		local PURPLE='\[\e[00;35m\]'
-		local RED='\[\e[00;31m\]'
-		local RESET='\[\e[00m\]'
-		local TEAL='\[\e[00;36m\]'
-		local WHITE='\[\e[00;37m\]'
-		local YELLOW='\[\e[00;33m\]'
+    ### Define colors ###
+    local BOLD_BLUE='\[\e[01;34m\]'
+    local BOLD_GREEN='\[\e[01;32m\]'
+    local BOLD_PURPLE='\[\e[01;35m\]'
+    local BOLD_RED='\[\e[01;31m\]'
+    local BOLD_TEAL='\[\e[01;36m\]'
+    local BOLD_WHITE='\[\e[01;37m\]'
+    local BOLD_YELLOW='\[\e[01;33m\]'
+    local BLUE='\[\e[00;34m\]'
+    local GREEN='\[\e[00;32m\]'
+    local PURPLE='\[\e[00;35m\]'
+    local RED='\[\e[00;31m\]'
+    local RESET='\[\e[00m\]'
+    local TEAL='\[\e[00;36m\]'
+    local WHITE='\[\e[00;37m\]'
+    local YELLOW='\[\e[00;33m\]'
 
-		### Define special symbols ###
-		local CHECKMARK='\342\234\223'
-		local FANCY_X='\342\234\227'
+    ### Define special symbols ###
+    local CHECKMARK='\342\234\223'
+    local FANCY_X='\342\234\227'
 
-		### Clear prompt ###
-		PS1=""
+    ### Clear prompt ###
+    PS1=""
 
-        ### Handle last command exit code ###
-		if [[ ${LAST_COMMAND} == 0 ]]; then
-		   PS1+="${GREEN}${CHECKMARK} "
-		else
-		   PS1+="${WHITE}\$? ${RED}${FANCY_X} "
-        fi
+    ### Handle last command exit code ###
+    if [[ ${LAST_COMMAND} == 0 ]]; then
+        PS1+="${GREEN}${CHECKMARK} "
+    else
+        PS1+="${WHITE}\$? ${RED}${FANCY_X} "
+    fi
 
-		### Start with square bracket ###
-		PS1+="${WHITE}["
+    ### Start with square bracket ###
+    PS1+="${WHITE}["
 
-		# If not successful, print last commands return code and a red X.
-		if [[ ${LAST_COMMAND} != 0 ]]; then
-			PS1+="${WHITE}\$? ${RED}${FANCY_X} "
-		fi
+    # If not successful, print last commands return code and a red X.
+    if [[ ${LAST_COMMAND} != 0 ]]; then
+        PS1+="${WHITE}\$? ${RED}${FANCY_X} "
+    fi
 
-		# If root, print the user in red.
-		# Otherwise, print the current user in yellow.
-		local USERNAME_COLOR=${YELLOW}
-		if [[ ${EUID} == 0 ]]; then
-			USERNAME_COLOR="${BOLD_RED}"
-		fi
+    ### If root, print the user in red ###
+    local USERNAME_COLOR=${YELLOW}
+    if [[ ${EUID} == 0 ]]; then
+        USERNAME_COLOR="${BOLD_RED}"
+    fi
 
-		PS1+="${USERNAME_COLOR}\\u${WHITE}@"
+    ### Otherwise, print the current user in yellow ###
+    PS1+="${USERNAME_COLOR}\\u${WHITE}@"
 
-		# Print the short hostname
-		PS1+="${GREEN}\\h${WHITE}: "
+    ### Hostname ###
+    PS1+="${GREEN}\\h${WHITE}: "
 
-		# Add the git branch you are working on if in a git repo
-		BRANCH="$(git branch 2>/dev/null | sed -n 's/* \(.*\)/\1/p')"
-		if [[ ! -z "${BRANCH}" ]]; then
-			PS1+="${PURPLE}(${BRANCH}) "
-		fi
+    ### Git branch if in repo ###
+    BRANCH="$(git branch 2>/dev/null | sed -n 's/* \(.*\)/\1/p')"
+    if [[ ! -z "${BRANCH}" ]]; then
+        PS1+="${PURPLE}(${BRANCH}) "
+    fi
 
-		# Add the python virtual environment you are working on if in a python virtual environment
-		if [[ ${VIRTUAL_ENV} ]]; then
-			PS1+="${YELLOW}{$(echo ${VIRTUAL_ENV} | sed -n 's/.*\/\(.*\)/\1/p')} "
-		fi
+    ### Python virtual environment ###
+    if [[ ${VIRTUAL_ENV} ]]; then
+        PS1+="${YELLOW}{$(echo ${VIRTUAL_ENV} | sed -n 's/.*\/\(.*\)/\1/p')} "
+    fi
 
-		# Print the working directory in teal
-		PS1+="${TEAL}\\w "
+    ### Current working directory ###
+    PS1+="${TEAL}\\w "
 
-		# End prompt with a square bracket
-		PS1+="${WHITE}]\n"
+    ### End with square bracket ###
+    PS1+="${WHITE}]\n"
 
-		# Print the prompt marker in green
-		# and reset the text color to the default.
-		PS1+="${GREEN}\\\$${RESET} "
-	}
+    ### Prompt marker and reset color ###
+    PS1+="${GREEN}\\\$${RESET} "
+}
 
 ### User local executibles ###
 export PATH=$HOME/.local/bin:$PATH
@@ -117,10 +115,10 @@ export PATH=$HOME/.local/bin:$PATH
 if [ "`uname`" == "Darwin" ]; then
     ### Ignore zsh message ###
     export BASH_SILENCE_DEPRECATION_WARNING=1
-    
+
     ### `code` command for MacOS ###
     alias code='open -a Visual\ Studio\ Code'
 fi
 
-
+### Git autocomplete ###
 source ~/.local/git-auto-complete.bash
