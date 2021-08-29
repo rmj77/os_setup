@@ -18,18 +18,19 @@ fi
 ### Append to history rather than overwrite ###
 shopt -s histappend
 
-## Ignore history for certain commands
+### Commands to ignore in history ###
 HISTIGNORE='ls:ll:bg:fg:history'
 
+### History size ###
 HISTSIZE=200000
 HISTFILESIZE=200000
 
-# Dump history right away and setup the shell prompt
-PROMPT_COMMAND='history -a && set_prompt'
+### Command for prompt ###
+PROMPT_COMMAND='set_prompt'
 
-# Aliases
+### Command aliases ###
 alias grep='grep --color=auto'
-alias ll='ls -lahG'
+alias ll='ls -lah'
 
 function set_prompt () {
 
@@ -70,7 +71,7 @@ function set_prompt () {
     ### Start with square bracket ###
     PS1+="${WHITE}["
 
-    # If not successful, print last commands return code and a red X.
+    ### Last command exit code ###
     if [[ ${LAST_COMMAND} != 0 ]]; then
         PS1+="${WHITE}\$? ${RED}${FANCY_X} "
     fi
