@@ -61,19 +61,14 @@ function set_prompt () {
     ### Clear prompt ###
     PS1=""
 
-    ### Handle last command exit code ###
-    if [[ ${LAST_COMMAND} == 0 ]]; then
-        PS1+="${GREEN}${CHECKMARK} "
-    else
-        PS1+="${WHITE}\$? ${RED}${FANCY_X} "
-    fi
-
     ### Start with square bracket ###
     PS1+="${WHITE}["
 
-    ### Last command exit code ###
-    if [[ ${LAST_COMMAND} != 0 ]]; then
-        PS1+="${WHITE}\$? ${RED}${FANCY_X} "
+    ### Handle last command exit code ###
+    if [[ ${LAST_COMMAND} == 0 ]]; then
+        PS1+=" ${GREEN}${CHECKMARK} "
+    else
+        PS1+=" ${RED}${FANCY_X} "
     fi
 
     ### If root, print the user in red ###

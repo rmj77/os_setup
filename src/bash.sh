@@ -7,12 +7,12 @@ if [ -f ~/.bash_logout ]; then
 fi
 
 if [ -f ~/.bash_profile ]; then
-    rm ~/.bash_rofile
+    rm ~/.bash_profile
 fi
 
 if [ -f ~/.bashrc ]; then
     rm ~/.bashrc
 fi
 
-cp .bashrc ~/.bashrc
-cp .bash_profile ~/.bash_profile
+cp res/.bashrc ~/.bashrc
+cp res/.bash_profile ~/.bash_profile
