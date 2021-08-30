@@ -2,7 +2,7 @@
 
 set -e
 
-snap install code --classic
-snap install intellij-idea-ultimate --classic
-snap install clion --classic
-snap install go
+sudo snap install code --classic
+sudo snap install intellij-idea-ultimate --classic
+sudo snap install clion --classic
+sudo snap install go
