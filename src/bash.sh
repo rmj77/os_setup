@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 if [ -f ~/.profile ]; then
     rm ~/.profile
 fi

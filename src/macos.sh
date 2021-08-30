@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 bash src/bash.sh
 bash src/vim.sh
 bash src/ssh.sh
