@@ -1,9 +1,10 @@
 #!/bin/bash
 
-bash apt.sh
-bash git.sh
-bash snap.sh
-bash vim.sh
-bash ssh.sh
+bash src/bash.sh
+bash src/apt.sh
+bash src/git.sh
+bash src/snap.sh
+bash src/vim.sh
+bash src/ssh.sh
 
 sudo reboot
