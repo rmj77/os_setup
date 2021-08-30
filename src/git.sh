@@ -2,7 +2,7 @@
 
 set -e
 
-cp .gitignore ~/.
+cp res/.gitignore ~/.
 git config --global core.excludesfile ~/.gitignore
 
 git config --global user.name "Spencer, Paul Whiting"
