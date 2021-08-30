@@ -2,6 +2,6 @@
 
 set -e
 
-# TODO Make this use defaults
-ssh-keygen -t rsa
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
+
 echo "Remember to add ssh keys to online git accounts"
