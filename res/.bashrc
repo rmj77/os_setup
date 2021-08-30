@@ -117,4 +117,6 @@ if [ "`uname`" == "Darwin" ]; then
 fi
 
 ### Git autocomplete ###
-source ~/.local/git-completion.bash
+if [ -f ~/.local/git-completion.bash ]; then
+    source ~/.local/git-completion.bash
+fi

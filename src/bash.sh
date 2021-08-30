@@ -21,5 +21,5 @@ fi
 cp res/.bashrc ~/.bashrc
 cp res/.bash_profile ~/.bash_profile
 
-sudo cp res/.bashrc /root/.bashrc
-sudo cp res/.bash_profile /root/.bash_profile
+sudo cp res/.bashrc ~root/.
+sudo cp res/.bash_profile ~root/.
