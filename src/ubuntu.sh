@@ -3,6 +3,7 @@
 set -e
 
 bash src/bash.sh
+bash src/chrome.sh
 bash src/apt.sh
 bash src/git.sh
 bash src/snap.sh
