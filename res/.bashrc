@@ -32,6 +32,15 @@ PROMPT_COMMAND='set_prompt'
 alias grep='grep --color=auto'
 alias ll='ls -lah'
 
+### Override cd command to keep a stack of directories ###
+function cd () {
+    if [ "$1" == "-" ]; then
+        popd > /dev/null
+    else
+        pushd $1 > /dev/null
+    fi
+}
+
 function set_prompt () {
 
     ### Return code of previous command ###
