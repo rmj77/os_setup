@@ -34,10 +34,14 @@ alias ll='ls -lah'
 
 ### Override cd command to keep a stack of directories ###
 function cd () {
-    if [ "$1" == "-" ]; then
-        popd > /dev/null
+    if [ $# -eq 0 ]; then
+        pushd $HOME > /dev/null
     else
-        pushd $1 > /dev/null
+        if [ "$1" == "-" ]; then
+            popd > /dev/null
+        else
+            pushd $1 > /dev/null
+        fi
     fi
 }
 
