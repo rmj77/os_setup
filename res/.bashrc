@@ -131,7 +131,7 @@ if [ "`uname`" == "Darwin" ]; then
 fi
 
 ### Source any extra environment scripts ###
-if [ -f ~/.bash_environment ]; then
+if [ -d ~/.bash_environment ]; then
     for file in ~/.bash_environment/*; do
         source $file
     done
