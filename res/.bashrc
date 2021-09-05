@@ -29,6 +29,7 @@ HISTFILESIZE=200000
 PROMPT_COMMAND='set_prompt'
 
 ### Command aliases ###
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -lah'
 
