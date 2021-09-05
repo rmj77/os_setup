@@ -130,7 +130,9 @@ if [ "`uname`" == "Darwin" ]; then
     alias code='open -a Visual\ Studio\ Code'
 fi
 
-### Git autocomplete ###
-if [ -f ~/.local/git-completion.bash ]; then
-    source ~/.local/git-completion.bash
+### Source any extra environment scripts ###
+if [ -f ~/.bash_environment ]; then
+    for file in ~/.bash_environment/*; do
+        source $file
+    done
 fi

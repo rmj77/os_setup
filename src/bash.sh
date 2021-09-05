@@ -18,6 +18,8 @@ if [ -f ~/.bashrc ]; then
     rm ~/.bashrc
 fi
 
+mkdir -p ~/.bash_environment
+
 cp res/.bashrc ~/.bashrc
 cp res/.bash_profile ~/.bash_profile
 
