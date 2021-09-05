@@ -2,4 +2,4 @@
 
 set -e
 
-sudo apt install -y cmake git gcc python3-pip vim wget htop curl net-tools gnome-tweaks tmux screen
+sudo apt install -y cmake git gcc python3-pip vim wget htop curl net-tools gnome-tweaks tmux screen xclip cheese
