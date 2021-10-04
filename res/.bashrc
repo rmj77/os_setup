@@ -32,6 +32,7 @@ PROMPT_COMMAND='set_prompt'
 alias ls='ls --color'
 alias grep='grep --color=auto'
 alias ll='ls -lah'
+alias tmux='tmux -l'
 
 ### Override cd command to keep a stack of directories ###
 function cd () {
