@@ -87,7 +87,7 @@ function set_prompt () {
     fi
 
     ### If root, print the user in red ###
-    local USERNAME_COLOR=${YELLOW}
+    local USERNAME_COLOR=${BOLD_YELLOW}
     if [[ ${EUID} == 0 ]]; then
         USERNAME_COLOR="${BOLD_RED}"
     fi
@@ -96,7 +96,7 @@ function set_prompt () {
     PS1+="${USERNAME_COLOR}\\u${WHITE}@"
 
     ### Hostname ###
-    PS1+="${GREEN}\\h${WHITE}: "
+    PS1+="${BOLD_GREEN}\\h${WHITE}: "
 
     ### Git branch if in repo ###
     BRANCH="$(git branch 2>/dev/null | sed -n 's/* \(.*\)/\1/p')"
@@ -110,26 +110,22 @@ function set_prompt () {
     fi
 
     ### Current working directory ###
-    PS1+="${TEAL}\\w "
+    PS1+="${BOLD_TEAL}\\w "
 
     ### End with square bracket ###
     PS1+="${WHITE}]\n"
 
+    ### If root, print the prompt in bold red ###
+    local PROMPT_COLOR=${BOLD_GREEN}
+    if [[ ${EUID} == 0 ]]; then
+        PROMPT_COLOR="${BOLD_RED}"
+    fi
     ### Prompt marker and reset color ###
-    PS1+="${GREEN}\\\$${RESET} "
+    PS1+="${PROMPT_COLOR}\\\$${RESET} "
 }
 
 ### User local executibles ###
 export PATH=$HOME/.local/bin:$PATH
-
-### MacOS specific config ###
-if [ "`uname`" == "Darwin" ]; then
-    ### Ignore zsh message ###
-    export BASH_SILENCE_DEPRECATION_WARNING=1
-
-    ### `code` command for MacOS ###
-    alias code='open -a Visual\ Studio\ Code'
-fi
 
 ### Source any extra environment scripts ###
 if [ -d ~/.bash_environment ]; then
